@@ -15,10 +15,14 @@ export default {
         }
     },
     actions: {
-        FETCH_ITEM({commit}, id) {
-            return api.fetchItem(id)
-                .then(({data}) => commit('SET_ITEM', data))
-                .catch(error => console.log(error))
+        async FETCH_ITEM({commit}, id) {
+            try{
+                var response = await api.fetchItem(id);
+                commit('SET_ITEM',response.data);
+                return response;
+            }catch(error) {
+                console.log(error);
+            }
         }
     },
 }

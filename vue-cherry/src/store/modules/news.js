@@ -15,13 +15,14 @@ export default {
     },
   },
   actions: {
-    FETCH_NEWS({commit}) {
-        return api.fetchNewsList()
-            .then(response => {
-                commit('SET_NEWS', response.data);
-            })
-            .catch(error => console.log(error))
-
+    async FETCH_NEWS({commit}) {
+      try {
+        var response = await api.fetchNewsList();
+         commit('SET_NEWS', response.data);
+         return response;
+      } catch (error) {
+        console.log(error);
+      }
     },
   }
 }

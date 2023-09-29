@@ -10,13 +10,14 @@ export default {
         },
     },
     actions: {
-        FETCH_LIST({commit}, name) {
-            return api.fetchList(name)
-                .then(({data}) => {
-                    console.log('FETCH_LIST');
-                    commit('SET_LIST', data);
-                })
-                .catch(error => console.log(error));
+        async FETCH_LIST({commit}, name) {
+            try {
+                var response = await api.fetchList(name);
+                commit('SET_LIST', response.data);
+                return response;
+            } catch (error) {
+                console.log(error);
+            }
         },
     }
 }

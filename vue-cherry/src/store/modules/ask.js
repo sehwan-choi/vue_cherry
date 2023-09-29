@@ -15,11 +15,14 @@ export default {
     }
   },
   actions: {
-    FETCH_ASK(context) {
-        return api.fetchAskList()
-            .then(response => {
-                context.commit('SET_ASK', response.data);
-            }).catch(error => console.log(error))
+    async FETCH_ASK(context) {
+      try{
+        var response = await api.fetchAskList();
+        context.commit('SET_ASK', response.data);
+        return response;
+      }catch(error){
+        console.log(error)
+      }
     }
   }
 }

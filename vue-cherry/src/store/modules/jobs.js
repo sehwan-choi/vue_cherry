@@ -15,11 +15,14 @@ export default {
     },
   },
   actions: {
-    FETCH_JOBS({ commit }) {
-        return api.fetchJobsList()
-            .then(response => {
-                commit('SET_JOBS', response.data);
-            }).catch(error => console.log(error));
+    async FETCH_JOBS({ commit }) {
+      try {
+        var response = await api.fetchJobsList();
+        commit('SET_JOBS', response.data);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
     },
   }
 }

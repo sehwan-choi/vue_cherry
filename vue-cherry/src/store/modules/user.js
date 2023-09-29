@@ -15,10 +15,14 @@ export default {
         }
     },
     actions: {
-        FETCH_USER({commit}, username) {
-            return api.fetchUserInfo(username)
-                .then(({data}) => commit('SET_USER', data))
-                .catch(error => console.log(error))
+        async FETCH_USER({commit}, username) {
+            try {
+                var response = await api.fetchUserInfo(username);
+                commit('SET_USER', response.data);
+                return response;
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 }
