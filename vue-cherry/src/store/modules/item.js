@@ -16,7 +16,7 @@ export default {
     },
     actions: {
         FETCH_ITEM({commit}, id) {
-            api.fetchItem(id)
+            return api.fetchItem(id)
                 .then(({data}) => commit('SET_ITEM', data))
                 .catch(error => console.log(error))
         }

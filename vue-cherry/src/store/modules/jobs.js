@@ -16,9 +16,9 @@ export default {
   },
   actions: {
     FETCH_JOBS({ commit }) {
-        api.fetchJobsList()
-            .then(({ data }) => {
-                commit('SET_JOBS', data);
+        return api.fetchJobsList()
+            .then(response => {
+                commit('SET_JOBS', response.data);
             }).catch(error => console.log(error));
     },
   }

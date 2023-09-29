@@ -5,6 +5,7 @@ import news from './modules/news.js'
 import jobs from './modules/jobs.js'
 import user from './modules/user.js'
 import item from './modules/item.js'
+import list from './modules/list.js'
 
 Vue.use(Vuex);
 
@@ -15,5 +16,6 @@ export default new Vuex.Store({
     news,
     user,
     item,
+    list
   }
 })

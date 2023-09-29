@@ -15,10 +15,10 @@ export default {
     },
   },
   actions: {
-    FETCH_NEWS(context) {
-        api.fetchNewsList()
+    FETCH_NEWS({commit}) {
+        return api.fetchNewsList()
             .then(response => {
-                context.commit('SET_NEWS', response.data);
+                commit('SET_NEWS', response.data);
             })
             .catch(error => console.log(error))
 

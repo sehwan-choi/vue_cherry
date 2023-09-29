@@ -16,7 +16,7 @@ export default {
     },
     actions: {
         FETCH_USER({commit}, username) {
-            api.fetchUserInfo(username)
+            return api.fetchUserInfo(username)
                 .then(({data}) => commit('SET_USER', data))
                 .catch(error => console.log(error))
         }

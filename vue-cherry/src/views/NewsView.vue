@@ -1,29 +1,18 @@
 <template>
   <div>
-    <p v-for="item in news" v-bind:key="item.id">
-      <a v-bind:href="item.url">
-        {{ item.title }}
-      </a>
-      <small>
-        {{ item.time_ago }} by 
-        <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
-      </small>
-    </p>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import ListItem from '../components/ListItem.vue'
+import SpinnerMixin from '../mixins/SpinnerMixin.js'
 
 export default {
-  computed: {
-    ...mapGetters({
-      news : 'fetchedNews'
-    })
+  components:{
+    ListItem
   },
-  created() {
-    this.$store.dispatch('FETCH_NEWS')
-  }
+  mixins: [SpinnerMixin],
 }
 </script>
 

@@ -16,7 +16,7 @@ export default {
   },
   actions: {
     FETCH_ASK(context) {
-        api.fetchAskList()
+        return api.fetchAskList()
             .then(response => {
                 context.commit('SET_ASK', response.data);
             }).catch(error => console.log(error))

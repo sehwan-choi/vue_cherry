@@ -1,35 +1,15 @@
 <template>
   <div>
-    <p v-for="item in ask" v-bind:key="item.id">
-      <router-link v-bind:to="item.url">{{ item.title }}</router-link>
-      <small>{{ item.time_ago }} by {{ item.user }}</small>
-    </p>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-// import { mapState } from 'vuex';
-import { mapGetters} from 'vuex';
+import ListItem from '../components/ListItem.vue'
+import SpinnerMixin from '../mixins/SpinnerMixin.js'
 
 export default {
-  computed: {
-    // #2
-    ...mapGetters({
-      ask : 'fetchedAsk'
-    })
-    // #1
-    // ...mapState(['ask'])
-    // ...mapState({
-    //   ask: state => state.ask
-    // })
-  },
-  created() {
-    this.$store.dispatch('FETCH_ASK');
-  }
-
+  components: { ListItem },
+  mixins: [SpinnerMixin]
 }
 </script>
-
-<style>
-
-</style>
